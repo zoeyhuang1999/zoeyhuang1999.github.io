@@ -4,15 +4,74 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <title>Time</title>
+
 </head>
+
 <style type="text/css">
-	body{
+	body,h3{
 		margin: 0;
 		padding: 0;
 	}
+	div{
+		text-align: center;
+		font-family: "Arial Rounded MT Bold";
+		color: #fff;
+	}
+	#day{
+		font-size: 30px;
+	}
+	#week{
+		font-size: 23px;
+		display: inline-block;
+		margin: 8px 0;
+	}
+	.icon {
+       width: 2.5em; height: 2.5em;
+       vertical-align: -0.15em;
+       fill: currentColor;
+       overflow: hidden;
+    }
+
 </style>
 <body>
-	<iframe src="https://free.timeanddate.com/clock/i7yihtqx/n5002/fn7/fs30/fcfff/tct/pct/ftbi/tt0/tw1/tm1/th1/ta1/tb4" frameborder="0" width="302" height="86" allowtransparency="true"></iframe>
 
+<div>
+
+<h3>
+	<svg class="icon" aria-hidden="true">
+    	<use xlink:href="#icon-047-calendar"></use>
+	</svg>
+	<br>
+	<label id="day"></label>
+	<br>
+	<label id="week"></label>
+	<br>
+	<label id="time"></label>
+</h3>
+
+</div>
 </body>
+
+<script src="http://at.alicdn.com/t/font_2783961_dwl0k81jbb5.js"></script>
+<script src="dateformat.js"></script>
+<script>
+
+	function mytime(){
+
+	var date = new Date();
+
+	var day = date.toLocaleDateString();
+	var week = date.getDay();
+	var arr = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+	var time = date.toLocaleTimeString(
+		'chinese', { hour12: false });
+
+	document.getElementById("day").innerHTML = dateFormat(day, "mmm dS, yyyy");
+	document.getElementById("week").innerHTML = arr[week];
+	document.getElementById("time").innerHTML = time;
+	}
+
+	setInterval(function() {mytime()},1000);
+</script>  
+
 </html>
